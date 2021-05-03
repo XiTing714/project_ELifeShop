@@ -1,0 +1,51 @@
+.statusbar {
+  width: 100vw;
+  background-color: white;
+  position: relative
+}
+
+.search_container {
+  width: 100vw;
+  position: relative;
+  display: flex;
+  align-items: center
+}
+
+.search_title {
+  position: absolute;
+  left: 26rpx;
+  font-weight: bold;
+  font-size: 16px;
+  display: flex;
+  align-items: center
+}
+
+.search_input {
+  position: absolute;
+  font-size: 12px;
+  right: 214rpx
+}
+
+.search_input input{
+  display: block;
+  box-sizing: border-box;
+  background: #f7f7f7;
+  border-radius: 20rpx;
+  height: 60rpx;
+  padding-left: 20rpx
+}
+
+.swiper_container {
+  width: 750rpx;
+  height: 375rpx;
+}
+
+.swiper_container swiper {
+  width: 750rpx;
+  height: 375rpx;
+}
+
+.swiper_container image {
+  width: 750rpx;
+  height: 375rpx;
+}

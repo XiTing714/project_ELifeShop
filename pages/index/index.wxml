@@ -1,0 +1,18 @@
+<van-sticky>
+  <view class="statusbar" style="height:{{statusBarHeight}}px"></view>
+  <view  class="search_container"  style="height:{{navHeight}}px">
+    <view class="search_title" 
+      style="height:{{menuHeight}}px;width:{{menuWidth}}px">优选生活</view>
+    <view class="search_input" style="width:{{menuWidth*2}}px">
+      <input placeholder="搜索优选商品" disabled></input>
+    </view>
+  </view>
+</van-sticky>
+
+<view class="swiper_container">
+  <swiper indicator-dots="true" indicator-active-color="#fff" autoplay circular>
+    <swiper-item wx:for="{{banners}}" wx:key="id">
+      <image src="{{item.picUrl}}" mode="aspectFill"></image>
+    </swiper-item>
+  </swiper>
+</view>
