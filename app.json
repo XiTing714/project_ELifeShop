@@ -6,13 +6,17 @@
     "pages/goods_detail/index",
     "pages/cart/index",
     "pages/user/index",
-    "pages/search/index"
+    "pages/search/index",
+    "pages/address_add/index",
+    "pages/address_manage/index",
+    "pages/address_edit/index",
+    "pages/test/index"
 
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "优选生活馆",
+    "navigationBarTitleText": "优享生活馆",
     "navigationBarTextStyle":"black"
   },
   "tabBar": {
@@ -52,7 +56,13 @@
     "van-search": "@vant/weapp/search/index",
     "van-transition": "@vant/weapp/transition/index",
     "van-popup": "@vant/weapp/popup/index",
-    "van-empty": "@vant/weapp/empty/index"
+    "van-empty": "@vant/weapp/empty/index",
+    "van-radio": "@vant/weapp/radio/index",
+    "van-dialog": "@vant/weapp/dialog/index",
+    "van-checkbox": "@vant/weapp/checkbox/index",
+    "van-button": "@vant/weapp/button/index",
+    "van-area": "@vant/weapp/area/index",
+    "van-swipe-cell": "@vant/weapp/swipe-cell/index"
   },
   "sitemapLocation": "sitemap.json"
 }

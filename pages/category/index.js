@@ -1,6 +1,7 @@
 const WXAPI = require('apifm-wxapi')
 const upSort = require('../../utils/upSort.js')
 const downSort = require('../../utils/downSort.js')
+const AUTH = require('../../utils/auth')
 
 Page({
 
@@ -13,6 +14,7 @@ Page({
     tagIndex: 0,
     scrollX: 0,
     currentGoods: [],
+    compreFilterIndex: null,
     priceFilterIndex: null,
     cateName: ["为你推荐", "匠人精选", "艺术品"],
     subcate: ["生活节", "超级补贴"],
@@ -83,7 +85,9 @@ Page({
     //console.log(e.currentTarget.dataset.index)
     //先把当前商品重置为空数组
     this.setData({
-      currentGoods: []
+      currentGoods: [],
+      compreFilterIndex: null,
+      priceFilterIndex: null
     })
     let currentIndex = e.currentTarget.dataset.index
     let subcate, tagList
@@ -119,7 +123,9 @@ Page({
     //console.log(e.currentTarget.dataset.index)
     //先把当前商品重置为空数组
     this.setData({
-      currentGoods: []
+      currentGoods: [],
+      compreFilterIndex: null,
+      priceFilterIndex: null
     })
     let subcateIndex = e.currentTarget.dataset.index
     // 取标签tagList
@@ -175,17 +181,28 @@ Page({
       categoryId: 221798,
       tagsLike: currentTagName
     })
-    this.setData({
-      currentGoods: res.data
-    })
-    wx.hideLoading()
     wx.setStorageSync("currentGoods", res.data)
-    console.log(wx.getStorageSync("currentGoods"))
+    //console.log(wx.getStorageSync("currentGoods"))
     //算出排序商品
     let upcurrentGoods = upSort(wx.getStorageSync("currentGoods"))
     let downcurrentGoods = downSort(wx.getStorageSync("currentGoods"))
-    console.log(upcurrentGoods)
-    console.log(downcurrentGoods)
+    //console.log(upcurrentGoods)
+    //console.log(downcurrentGoods)
+    // 根据filterIndex展示当前数据: 
+    if (this.data.compreFilterIndex === null & this.data.priceFilterIndex === 0) {
+      this.setData({
+        currentGoods: upcurrentGoods
+      })
+    } else if (this.data.compreFilterIndex === null & this.data.priceFilterIndex === 1) {
+      this.setData({
+        currentGoods: downcurrentGoods
+      })
+    } else {
+      this.setData({
+        currentGoods: res.data
+      })
+    }
+    wx.hideLoading()
     this.setData({
       upcurrentGoods,
       downcurrentGoods
@@ -217,7 +234,7 @@ Page({
     }
 
   },
-  //加入购物车弹出层
+  //点击icon弹出层
   async getPopUpShow(e) {
     let isPopUpShow = !this.data.isPopUpShow
     this.setData({
@@ -226,7 +243,10 @@ Page({
     const goodsId = e.currentTarget.dataset.item
     const res = await WXAPI.goodsDetail(goodsId)
     console.log(res.data)
-    let popUpGoods = res.data
+    let popUpGoods = {}
+    popUpGoods.buyNum = 1
+    popUpGoods.pic = res.data.pics[1].pic
+    popUpGoods.basicInfo = res.data.basicInfo
     this.setData({
       popUpGoods
     })
@@ -238,11 +258,99 @@ Page({
       isPopUpShow
     })
   },
+  // 减购买数量
+  handleMinusTap() {
+    let popUpGoods = this.data.popUpGoods
+    if (popUpGoods.buyNum <= 0) {
+      return
+    } else {
+      popUpGoods.buyNum = popUpGoods.buyNum - 1
+      this.setData({
+        popUpGoods
+      })
+    }
+  },
+  // 加购买数量
+  handlePlusTap() {
+    let popUpGoods = this.data.popUpGoods
+    popUpGoods.buyNum = popUpGoods.buyNum + 1
+    this.setData({
+      popUpGoods
+    })
+  },
+  //输入框值变化
+  changeInput(e) {
+    let popUpGoods = this.data.popUpGoods
+    let num = e.detail.value
+    if (num == null || num == "")  {
+      return
+    } else {
+      popUpGoods.buyNum = num
+    }
+    this.setData({
+      popUpGoods
+    })
+
+  },
+  //弹出层中将商品加入购物车
+  addToCart() {
+    AUTH.checkHasLogined().then(isLogined => {
+      this.setData({
+        wxlogin: isLogined
+      })
+      if (isLogined) {
+        // 处理加入购物车的业务逻辑
+        console.log("已登录")
+        this.addToCartDone()
+      } else {
+        console.log("未登录")
+        AUTH.openLoginDialog()
+      }
+    })
+  },
+  addToCartDone() {
+    let cartList = wx.getStorageSync("cartList") || [] 
+    //判断所加入商品是否已经存于购物列表中
+    const id = this.data.popUpGoods.basicInfo.id
+    let index = cartList.findIndex(item => item.basicInfo.id === id)
+    if (index === -1) {
+      let cartGoods = {}
+      cartGoods.pic = this.data.popUpGoods.pic
+      cartGoods.basicInfo = this.data.popUpGoods.basicInfo
+      cartGoods.buyNum = this.data.popUpGoods.buyNum
+      cartGoods.checked = true
+      cartGoods.left = "margin-left: 0rpx"
+      cartList.push(cartGoods)
+    } else {
+      let num = this.data.popUpGoods.buyNum
+      cartList[index].buyNum = cartList[index].buyNum + num
+    }
+    wx.setStorageSync("cartList", cartList)
+    // 关闭popUp
+    let isPopUpShow = !this.data.isPopUpShow
+    this.setData({
+      isPopUpShow
+    })
+    // 弹窗提示
+    wx.showToast({
+      title: '加入成功',
+      icon: 'success'
+      // true 防止用户 手抖 疯狂点击按钮 
+      //mask: true
+    });
+
+  },
+  //Dialog对话框事件
+  processLogin(e) {
+    AUTH.login(this)
+    //console.log(e.detail)
+    wx.setStorageSync("userInfo", e.detail.userInfo)
+  },
+  //
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-    // 获取商品数据
     let cateName = this.data.goodsList.map(item => item.name)
     let subcate, tagList
     //console.log(cateName)
@@ -276,7 +384,11 @@ Page({
    * Lifecycle function--Called when page show
    */
   onShow: function () {
-
+    AUTH.checkHasLogined().then(isLogined => {
+      this.setData({
+        wxlogin: isLogined
+      })
+    })
   },
 
   /**

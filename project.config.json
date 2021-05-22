@@ -25,7 +25,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.14.1",
 	"appid": "wx4d5c77cae5dfda21",
-	"projectname": "%E4%BC%98%E8%B4%A8%E7%94%9F%E6%B4%BB%E9%A6%86",
+	"projectname": "%E4%BC%98%E4%BA%AB%E7%94%9F%E6%B4%BB%E9%A6%86",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
@@ -67,6 +67,49 @@
 					"id": -1,
 					"name": "分类",
 					"pathName": "pages/category/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "购物车",
+					"pathName": "pages/cart/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "添加地址",
+					"pathName": "pages/address_add/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "个人中心",
+					"pathName": "pages/user/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 5,
+					"name": "我的地址",
+					"pathName": "pages/address_manage/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "编辑地址",
+					"pathName": "pages/address_edit/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "测试",
+					"pathName": "pages/test/index",
+					"query": "",
 					"scene": null
 				}
 			]

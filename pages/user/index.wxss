@@ -1,1 +1,199 @@
 /* pages/user/index.wxss */
+page {
+  background-color: #F5F5F5
+}
+
+.sticky_container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  background-color: #AD0E11
+}
+.sticky_content {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: absolute;
+  right: 220rpx;
+}
+.sticky_content image {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.top_container {
+  width: 100%;
+  height: 230rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #AD0E11
+}
+
+.top_container .userinfo {
+  width: 96%;
+  height: 120rpx;
+  display: flex;
+  align-items: center;
+  margin-top: 20rpx
+}
+.userinfo .user_image {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  margin-left: 18rpx;
+  background-color: white
+}
+.userinfo .user_nickname {
+  margin-left: 24rpx;
+  font-size: 36rpx;
+  color: white
+}
+
+.top_servelist {
+  width: 96%;
+  display: flex;
+  margin-top: 36rpx;
+  border-radius: 14rpx;
+  background-color: white
+}
+.top_servelist .serve {
+  height: 120rpx;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 14rpx;
+  margin-top: 14rpx
+}
+.serve .serve_num {
+  font-size: 34rpx
+}
+.serve .serve_title {
+  font-size: 32rpx
+}
+
+.main_container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 106rpx
+}
+
+.orderinfo_container {
+  width: 96%;
+  background-color: white;
+  border-radius: 14rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.orderinfo_top {
+  width: 90%;
+  height: 86rpx;
+  display: flex;
+  align-items: center;
+  position: relative;
+  border-bottom: 2rpx solid #F5F5F5
+}
+.orderinfo_top .title {
+  font-size: 34rpx;
+  position: absolute;
+  left: 0;
+  display: flex;
+  align-items: center;
+}
+.orderinfo_top .all_order {
+  position: absolute;
+  right: 0;
+  display: flex;
+  align-items: center
+}
+.all_order .text {
+  font-size: 30rpx;
+  color: #666
+}
+.all_order image {
+  width: 28rpx;
+  height: 28rpx;
+  margin-left: 8rpx
+}
+
+.orderinfo_content {
+  display: flex;
+  width: 100%;
+  margin-top: 20rpx
+}
+.orderinfo_content .orderinfo{
+  flex: 1;
+  height: 100rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20rpx;
+  margin-bottom: 30rpx;
+}
+.orderinfo_content .orderinfo image {
+  width: 40rpx;
+  height: 40rpx;
+}
+.orderinfo_content .orderinfo .orderinfo_name {
+  font-size: 28rpx;
+  color: #666666
+}
+
+.serve_container {
+  width: 96%;
+  background-color: white;
+  border-radius: 14rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30rpx
+}
+
+.serve_top {
+  width: 90%;
+  height: 86rpx;
+  display: flex;
+  align-items: center;
+  position: relative;
+  border-bottom: 2rpx solid #F5F5F5
+}
+.serve_top .title {
+  font-size: 34rpx;
+  position: absolute;
+  left: 0;
+  display: flex;
+  align-items: center;
+}
+
+.serve_content {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-top: 20rpx
+}
+.serve_content .serve{
+  width: calc(96vw / 4);
+  height: 110rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20rpx;
+  margin-bottom: 30rpx;
+}
+.serve_content .serve image {
+  width: 54rpx;
+  height: 54rpx;
+}
+.serve_content .serve .serve_name {
+  font-size: 30rpx;
+  color: #666666
+}
+

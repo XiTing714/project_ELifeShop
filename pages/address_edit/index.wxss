@@ -1,0 +1,118 @@
+page {
+  background-color: #f5f5f5
+}
+
+.sticky_container {
+  background-color: white
+}
+
+.sticky_main {
+  display: flex;
+  align-items: center
+}
+
+.sticky_main .back_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80rpx
+}
+
+.sticky_main .back_btn image{
+  width: 50rpx;
+  height: 50rpx
+}
+
+.sticky_main .sticky_title {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 28rpx;
+  font-size: 36rpx
+}
+
+.address_container {
+  border-top: 2rpx solid #f5f5f5;
+  background-color: white
+}
+
+.name_container {
+  border-bottom: 2rpx solid #f5f5f5;
+}
+
+.name_main {
+  height: 120rpx;
+  display: flex
+}
+
+.name_title {
+  flex: 1;
+  height: 100%;
+  font-size: 32rpx;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 28rpx
+}
+
+.name_content {
+  flex: 3;
+  margin-left: 24rpx;
+  height: 100%;
+  font-size: 32rpx;
+  display: flex;
+  align-items: center;
+}
+
+/* .name_content .placeholder{
+  padding-top: 6rpx
+} */
+
+.alert_text {
+  font-size: 28rpx;
+  color: #AD0E11;
+  display: flex;
+  height: 50rpx;
+  align-items: flex-start;
+  margin-bottom: 16rpx
+}
+
+.alert_text .blank {
+  flex: 1;
+}
+
+.alert_text .text {
+  flex: 3;
+  margin-left: 48rpx;
+  display: flex;
+  align-items: center
+}
+
+.addtool_container {
+  background-color: white;
+  margin-top: 24rpx;
+  display: flex;
+  justify-content: center
+}
+
+.addtool_container .save_btn {
+  width: 90%;
+  height: 100rpx;
+  color: white;
+  font-size: 32rpx;
+  background-color: #AD0E11;
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+
+.filled .save_btn {
+  background-color: #7a7a7a
+}
+
+.area {
+  margin-top: 20rpx
+}
+
+
+

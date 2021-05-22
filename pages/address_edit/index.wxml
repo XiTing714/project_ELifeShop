@@ -1,0 +1,71 @@
+<van-sticky>
+  <view class="sticky_container">
+    <view class="statusbar" style="height:{{statusBarHeight}}px"></view>
+    <view class="sticky_main" style="height:{{navHeight}}px">
+      <view class="back_btn" style="height:{{menuHeight}}px" bindtap="toBackPage">
+        <image src="../../static/images/arrow_left.png"></image>
+      </view>
+      <view class="sticky_title" style="height:{{menuHeight}}px;width:{{menuWidth*2}}px">编辑收获地址</view>
+    </view>
+  </view>
+</van-sticky>
+
+<view class="address_container">
+  <!-- 收货人 -->
+  <view class="name_container">
+    <view class="name_main">
+      <view class="name_title">收货人姓名</view>
+      <view class="name_content"><input placeholder="请输入收货人真实姓名" class="text" placeholder-class="placeholder" value="{{addressInfo.userName}}" bindinput="onNameInput"></input></view>
+    </view>
+    <view class="alert_text" hidden="{{hideNameAlert}}">
+      <view class="blank"></view>
+      <view class="text">请输入正确的姓名</view>
+    </view>
+  </view>
+  <!-- 手机号 -->
+  <view class="name_container">
+    <view class="name_main">
+      <view class="name_title">手机号码</view>
+      <view class="name_content"><input placeholder="请输入收货人手机号" class="number" placeholder-class="placeholder" bindinput="onTelInput" value="{{addressInfo.telNumber}}" type="number"></input></view>
+    </view>
+    <view class="alert_text" hidden="{{hideTelAlert}}">
+      <view class="blank"></view>
+      <view class="text">请输入正确的手机号</view>
+    </view>
+  </view>
+  <!-- 所在区域 -->
+   <view class="name_container">
+    <view class="name_main">
+      <view class="name_title">所在区域</view>
+      <view class="name_content"><input placeholder="请选择所在区域" class="number" placeholder-class="placeholder" disabled bindtap="getPopUpShow" value="{{addressInfo.area}}"></input></view>
+    </view>
+    <view class="alert_text" hidden="{{hideAreaAlert}}">
+      <view class="blank"></view>
+      <view class="text">请输入正确的区域</view>
+    </view>
+    <!-- 选择区域弹出层 -->
+    <van-popup show="{{isPopUpShow}}" bind:click-overlay="onClose"
+    position="bottom"
+    custom-style="max-height: 80%;" close-icon-position="top-right">
+      <view class="area">
+        <van-area area-list="{{ areaList }}" title="请选择所在区域" bind:cancel="onClose" bind:confirm="getArea"></van-area>
+      </view>
+    </van-popup>
+   </view>
+  <!-- 详细地址 -->
+  <view class="name_container">
+    <view class="name_main">
+      <view class="name_title">详细地址</view>
+      <view class="name_content"><input placeholder="请输入街道、楼牌号等" placeholder-class="placeholder" value="{{addressInfo.detailInfo}}" bindinput="onDetailInput"></input></view>
+    </view>
+    <view class="alert_text" hidden="{{hideDetailAlert}}">
+      <view class="blank"></view>
+      <view class="text">请输入正确详细地址</view>
+    </view>
+  </view>
+</view>
+
+<view class="addtool_container {{isAllFilled ? '' : 'filled'}}">
+  <view class="save_btn" bindtap="saveAddress">保存</view>
+</view>
+

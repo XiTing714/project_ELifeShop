@@ -1,2 +1,109 @@
-<!--pages/cart/index.wxml-->
-<text>pages/cart/index.wxml</text>
+<van-sticky>
+   <view class="sticky">
+    <view class="statusbar" style="height:{{statusBarHeight}}px"></view>
+    <view class="sticky_container" style="height:{{navHeight}}px">
+      <view class="sticky_title" style="height:{{menuHeight}}px;width:{{menuWidth}}px">购物车
+      </view>
+      <view class="sticky_address"  style="height:{{menuHeight}}px;width:{{menuWidth*2}}px" bindtap="getPopUpShow">
+        <view class="text1">送至:</view>
+        <view class="text2" wx:if="{{address}}">{{checkedAddress[0].detailInfo}}</view>
+        <view class="text2" wx:else>
+          <text>点击选择地址</text>
+        </view>
+      </view>
+    </view>
+   </view>
+</van-sticky>
+
+<!-- 地址弹窗 -->
+<van-popup show="{{ isPopUpShow }}" bind:close="onClose"
+    position="bottom"
+    custom-style="height: 40%;"
+    closeable close-icon-position="top-right">
+    <view class="address_container" wx:if="{{address}}">
+      <view class="popup_title">送至</view>
+      <view class="scroll">
+        <scroll-view scroll-y>
+          <view class="address" wx:for="{{address}}" wx:key="detailInfo">
+            <view class="address_radio" bindtap="onAddressRadio" data-index="{{index}}"><van-checkbox value="{{item.checked}}" checked-color="green"></van-checkbox></view>
+            <view class="address_info">
+              <view class="user_info">
+                <view class="user_name">{{item.userName}}</view>
+                <view class="user_telnum">{{item.telNumber}}</view>
+              </view>
+              <view class="spec_address">{{item.area + item.detailInfo}}</view>
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+      <view class="add_address" bindtap="addAddress">＋ 新增地址</view>
+    </view>
+    
+    <view class="no_address_container" wx:else>
+      <view class="popup_title">请添加地址</view>
+      <view class="btn_container">
+        <view class="wx_address" bindtap="selWxAddress">选择微信地址</view>
+        <view class="new_address">新增地址</view>
+      </view>
+    </view>
+</van-popup>
+
+<!-- 购物车主要部分 -->
+<view wx:if="{{cartList}}">
+  <!-- 1.商品列表 -->
+  <view class="goodsList">
+    <view class="a-gooods" wx:for="{{cartList}}" wx:key="basicInfo.id">
+      <view class="a-goods-conts" bindtouchstart="touchS" data-index="{{index}}" style="{{item.left}}" bindtouchmove="touchM" bindtouchend="touchE">
+        <view class="goods-info">
+          <view class="radio-box" bindtap="changeChecked" data-index="{{index}}" >
+            <van-checkbox value="{{item.checked}}" checked-color="#AD0E11"  icon-size="22px"></van-checkbox>
+          </view>
+          <view class="img-box">
+            <image src="{{item.pic}}"></image>
+          </view>
+          <view class="text-box">
+            <view class="goods-title">{{item.basicInfo.name}}</view>
+            <view class="goods-price">
+              <view class="minprice"> ¥ {{item.basicInfo.minPrice}}</view>
+              <view class="oriprice" wx:if="{{item.basicInfo.minPrice !== item.basicInfo.originalPrice}}">¥ {{item.basicInfo.originalPrice}}</view>
+            </view>
+            <view class="buy-num">
+              <view class="jian-btn"  bindtap="minusTap" data-index="{{index}}">-</view>
+              <input type="number" value="{{item.buyNum}}" bindinput="changeInput" bindblur="changeInputEnd" data-index="{{index}}"></input>
+              <view class="jia-btn" bindtap="plusTap" data-index="{{index}}">+</view>
+            </view>
+          </view>
+        </view>
+        <view class="delete-btn" bindtap="delGoods" data-index="{{index}}">删除</view>
+        <!-- <view class="del-icon">
+          <van-icon name="close" size="32rpx" color="#000" data-key="{{item.key}}" catchtap="delItem" />
+        </view> -->
+      </view>
+    </view>
+  </view>
+  <!-- 2.结算工具栏 -->
+  <view class="footer_tool">
+    <!-- 全选 -->
+    <view class="all_chk_wrap" bindtap="chooseAllChecked">
+      <van-checkbox value="{{allChecked}}" checked-color="#AD0E11" icon-size="38rpx"></van-checkbox>
+      <view class="text">全选</view>
+    </view>
+    <!-- 总价格 -->
+    <view class="total_price_wrap">
+      <view class="text1">合计:</view>
+      <view class="text2">¥ {{totalPrice}}</view>
+    </view>
+    <!-- 结算 -->
+    <view class="order_pay_wrap">结算 ({{totalNum}})</view>
+  </view>
+</view>
+
+<view wx:else>
+  <van-empty description="购物车空空如也～" image="https://dcdn.it120.cc/2021/03/02/11544ab7-38ca-4570-a876-cbfd39720367.png">
+    <van-button type="danger" size="normal" color="#AD0E11" bind:click="toIndexPage" custom-style="width:300rpx;height120rpx;border-radius:14rpx;font-size:32rpx">
+      去逛逛
+    </van-button>
+  </van-empty>
+</view>
+
+<van-dialog id="van-dialog-auth-login" bind:getuserinfo="processLogin" />

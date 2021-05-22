@@ -1,6 +1,7 @@
 <van-search placeholder="请输入搜索关键词" shape="round" />
+
 <view class="cate_container">
-  <!-- 一、左侧分类栏 -->
+<!-- 一、左侧分类栏 -->
   <scroll-view class="left_scroll" scroll-y>
     <view class="left_item" wx:for="{{cateName}}" wx:key="*this" 
     wx:for-item="item1" wx:for-index="index1"
@@ -16,22 +17,22 @@
         <!-- 子分类结束 -->
       </view>
   </scroll-view>
-   <!-- 一、左侧分类栏结束 -->
-
-  <!-- 二、右侧内容 -->
-  <scroll-view class="right_container"> 
+<!-- 一、左侧分类栏结束 -->
+  
+<!-- 二、右侧内容 -->
+  <view class="right_container" scroll-y> 
     <!-- 1. 顶部标签栏 -->
     <block wx-if="{{tagList.length}}">
-    <view class="tag_container">
-      <scroll-view class="tag_scroll" scroll-x scroll-left="{{scrollX}}" scroll-with-animation="true">
-          <view class="tag_box {{tagIndex === index ? 'active_tagbox' : ' '}}" wx:for="{{tagList}}" wx:key="*this" bindtap="tapTag" data-index="{{index}}" data-item="{{item}}">
-            <view class="tag">{{item}}</view>
-          </view>
-        </scroll-view>
-      <view class="icon_showall" bindtap="showChooseBox">
-        <image src="../../static/images/arrow-down.png"></image>
+      <view class="tag_container">
+        <scroll-view class="tag_scroll" scroll-x scroll-left="{{scrollX}}" scroll-with-animation="true">
+            <view class="tag_box {{tagIndex === index ? 'active_tagbox' : ' '}}" wx:for="{{tagList}}" wx:key="*this" bindtap="tapTag" data-index="{{index}}" data-item="{{item}}">
+              <view class="tag">{{item}}</view>
+            </view>
+          </scroll-view>
+        <view class="icon_showall" bindtap="showChooseBox">
+          <image src="../../static/images/arrow-down.png"></image>
+        </view>
       </view>
-    </view>
     </block>
     <!-- 1. 顶部标签栏结束 -->
 
@@ -42,7 +43,7 @@
         <image src="../../static/images/arrow-down.png" bindtap="showChooseBox"></image>
       </view>
       <view class="choosebox_content">
-        <view wx:for="{{tagList}}" wx:key="*this" class="{{tagIndex === index ? 'active' : ' '}}" bindtap="tapTag" data-index="{{index}}">{{item}}</view>
+        <view wx:for="{{tagList}}" wx:key="*this" class="{{tagIndex === index ? 'active' : ' '}}" bindtap="tapTag" data-index="{{index}}" data-item="{{item}}">{{item}}</view>
       </view>
     </view>
     <!-- 2. 选择标签框结束 -->
@@ -68,27 +69,31 @@
    <!-- 3.排序按钮结束 -->
 
     <!-- 4. 商品内容 -->
-    <view class="goods_container" wx:if="{{currentGoods.length}}">
-      <view class="goods" wx:for="{{currentGoods}}" wx:key="id">
-        <!-- 左侧商品图片 -->
-        <view class="goods_img">
-          <image src="{{item.pic}}"></image>
-        </view>
-        <!-- 右侧商品信息 -->
-        <view class="goods_info">
-          <view class="goods_name">{{item.name}}</view>
-          <view class="goods_priceinfo">
-            <view class="price">
-              <view class="minprice">{{"¥" + item.minPrice}}</view>
-              <view class="origin_price" wx:if="{{item.minPrice !== item.originalPrice }}">{{"¥" + item.originalPrice}}</view>
-            </view>
-            <view class="add_icon" bindtap="getPopUpShow" data-item="{{item.id}}">
-              <image src="../../static/images/cart.png"></image>
+    <scroll-view class="goods_scroll" scroll-y wx:if="{{currentGoods.length}}">
+      <view class="goods_container" wx:if="{{currentGoods.length}}">
+        <view class="goods" wx:for="{{currentGoods}}" wx:key="id">
+          <!-- 左侧商品图片 -->
+          <view class="goods_img">
+            <image src="{{item.pic}}"></image>
+          </view>
+          <!-- 右侧商品信息 -->
+          <view class="goods_info">
+            <view class="goods_name">{{item.name}}</view>
+            <view class="goods_priceinfo">
+              <view class="price">
+                <view class="minprice">{{"¥" + item.minPrice}}</view>
+                <view class="origin_price" wx:if="{{item.minPrice !== item.originalPrice }}">{{"¥" + item.originalPrice}}</view>
+              </view>
+              <view class="add_icon" bindtap="getPopUpShow" data-item="{{item.id}}">
+                <image src="../../static/images/cart.png"></image>
+              </view>
             </view>
           </view>
+          
         </view>
       </view>
-    </view>
+    </scroll-view>
+    
     <!-- 4. 商品内容结束 -->
 
     <van-empty wx:if="{{!currentGoods.length}}" description="暂无商品" />
@@ -100,27 +105,29 @@
       closeable close-icon-position="top-right">
         <view class="goods_baseinfo">
           <view class="goods_img">
-            <image src="{{popUpGoods.pics[1].pic}}"></image>
+            <image src="{{popUpGoods.pic}}"></image>
           </view>
           <view class="goods_spe">
-            <view>{{"¥" + popUpGoods.basicInfo.originalPrice}}</view>
+            <view>{{"¥" + popUpGoods.basicInfo.minPrice}}</view>
           </view>
         </view>
         <view class="choosenums">
           <view class="text">购买数量</view>
           <view class="button_container">
-            <view id="minus">－</view>
+            <view id="minus" bindtap="handleMinusTap">－</view>
             <view class="input">
-              <input type="number" value="1"></input>
+              <input type="number" value="{{popUpGoods.buyNum}}" bindinput="changeInput"></input>
             </view>
-            <view id="plus">＋</view>
+            <view id="plus" bindtap="handlePlusTap">＋</view>
           </view>
         </view>
-        <view class="addbutton">加入购物车</view>
+        <view class="addbutton" bindtap="addToCart">加入购物车</view>
     </van-popup>
     <!-- 5. 加入购物车弹出层结束 -->
 
-  </scroll-view> 
-  <!-- 二、右侧内容结束 -->
+  </view> 
+ <!-- 二、右侧内容结束 -->
 
 </view>
+
+<van-dialog id="van-dialog-auth-login" bind:getuserinfo="processLogin" />

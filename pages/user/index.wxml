@@ -1,2 +1,107 @@
-<!--pages/user/index.wxml-->
-<text>pages/user/index.wxml</text>
+<van-sticky>
+  <view class="sticky">
+      <view class="statusbar" style="height:{{statusBarHeight}}px"></view>
+       <view class="sticky_container" style="height:{{navHeight}}px">
+        <view class="sticky_content" style="height:{{menuHeight}}px;width:{{menuWidth}}px;">
+          <image src="../../static/images/msg.png"></image>
+        </view>
+       </view>
+  </view>
+</van-sticky>
+
+<view class="top_container">
+  <view class="userinfo">
+    <block wx:if="{{wxlogin}}">
+      <image class="user_image" src="{{userInfo.avatarUrl}}"></image>
+      <view class="user_nickname">{{userInfo.nickName}}</view>
+    </block>
+    <block wx:else>
+      <image class="user_image"></image>
+      <view class="user_nickname" bindtap="toLogin">请点击登录</view>
+    </block>
+  </view>
+  <view class="top_servelist">
+    <view class="serve">
+      <view  class="serve_num">0</view>
+      <view  class="serve_title">收藏</view>
+    </view>
+    <view class="serve">
+      <view  class="serve_num">0</view>
+      <view  class="serve_title">足迹</view>
+    </view>
+    <view class="serve">
+      <view  class="serve_num">0</view>
+      <view  class="serve_title">积分</view>
+    </view>
+    <view class="serve">
+      <view  class="serve_num">0</view>
+      <view  class="serve_title">红包卡券</view>
+    </view>
+  </view>
+</view>
+
+<view class="main_container">
+  <view class="orderinfo_container">
+    <view class="orderinfo_top">
+      <view class="title">我的订单</view>
+      <view class="all_order">
+        <view class="text">查看全部订单</view>
+        <image src="../../static/images/arrow_right.png"></image>
+      </view>
+    </view>
+    <view class="orderinfo_content">
+      <view class="orderinfo">
+        <image src="../../static/images/my/pay.png"></image>
+        <view class="orderinfo_name">待支付</view>
+      </view>
+      <view class="orderinfo">
+        <image src="../../static/images/my/deliver.png"></image>
+        <view class="orderinfo_name">待发货</view>
+      </view>
+      <view class="orderinfo">
+        <image src="../../static/images/my/receive.png"></image>
+        <view class="orderinfo_name">待收货</view>
+      </view>
+      <view class="orderinfo">
+        <image src="../../static/images/my/evaluate.png"></image>
+        <view class="orderinfo_name">待评价</view>
+      </view>
+    </view>
+
+  </view>
+
+  <view class="serve_container">
+    <view class="serve_top">
+      <view class="title">我的服务</view>
+    </view>
+    <view class="serve_content">
+      <view class="serve" bindtap="toAddrMag">
+        <image src="../../static/images/my/serve/address.png"></image>
+        <view class="serve_name">收货地址</view>
+      </view>
+      <view class="serve">
+        <image src="../../static/images/my/serve/help.png"></image>
+        <view class="serve_name">帮助与客服</view>
+      </view>
+      <view class="serve">
+        <image src="../../static/images/my/serve/score.png"></image>
+        <view class="serve_name">积分兑换</view>
+      </view>
+      <view class="serve">
+        <image src="../../static/images/my/serve/sharegift.png"></image>
+        <view class="serve_name">分享有礼</view>
+      </view>
+      <view class="serve">
+        <image src="../../static/images/my/serve/cooperate.png"></image>
+        <view class="serve_name">商户合作</view>
+      </view>
+      <view class="serve">
+        <image src="../../static/images/my/serve/set.png"></image>
+        <view class="serve_name">设置</view>
+      </view>
+    </view>
+
+  </view>
+</view>
+
+<van-dialog id="van-dialog-auth-login" bind:getuserinfo="processLogin" />

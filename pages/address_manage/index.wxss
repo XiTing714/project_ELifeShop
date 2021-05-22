@@ -1,0 +1,175 @@
+page {
+  background-color: #f5f5f5;
+  position: relative;
+  height: 100vh
+}
+
+.sticky_container {
+  background-color: white
+}
+
+.sticky_main {
+  display: flex;
+  align-items: center
+}
+
+.sticky_main .back_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80rpx
+}
+
+.sticky_main .back_btn image{
+  width: 50rpx;
+  height: 50rpx
+}
+
+.sticky_main .sticky_title {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 26rpx;
+  font-size: 36rpx
+}
+
+.main_container {
+  width: 100%;
+  height: calc(100vh - 128rpx - 180rpx);
+}
+
+.main_container scroll-view {
+  height: calc(100vh - 128rpx - 180rpx);
+  width: 100vw;
+}
+
+.address_container {
+  width: 96%;
+  margin-left: 50%;
+  transform: translateX(-50%)
+}
+
+.swiper_container {
+  width: 100%;
+  height: 180rpx;
+  margin-top: 20rpx;
+}
+
+.swiper_main {
+  width: 100%;
+  height: 180rpx;
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  border-radius: 20rpx;
+}
+
+.active_swiper_main {
+  background-color: #C54946;
+  color: white
+}
+
+.swiper_main2 {
+  width: 91%;
+  height: 100%;
+  display: flex;
+  align-items: center
+}
+
+.swiper_main2 .address {
+  flex: 10;
+  height: 91%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center
+}
+
+.address .addr_top {
+  width: 100%;
+  flex: 2;
+  font-size: 32rpx;
+  display: flex;
+  align-items: center;
+}
+
+.address .addr_top .name {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center
+}
+
+.address .addr_top .tel {
+  flex: 3;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center
+}
+
+.address .addr_bottom {
+  flex: 3;
+  width: 100%;
+  font-size: 30rpx;
+  display: flex;
+}
+
+.address .addr_bottom .blank {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center
+}
+
+.address .addr_bottom .addr {
+  flex: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #666;
+  font-size: 30rpx;
+}
+
+.active_swiper_main .address .addr_bottom .addr {
+  color: white
+}
+
+.swiper_main2 .edit {
+  height: 100%;
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-left: 10rpx
+}
+
+.swiper_main2 .edit image{
+  width: 40rpx;
+  height: 40rpx
+}
+
+.delete {
+  background-color: #AD0E11;
+  width: 120rpx;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 30rpx;
+  margin-left: 16rpx;
+}
+
+.add_btn {
+  width: 94%;
+  height: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #AD0E11;
+  font-size: 32rpx;
+  color: white;
+  margin-top: 30rpx;
+  margin-left: 50%;
+  transform: translateX(-50%)
+}
+

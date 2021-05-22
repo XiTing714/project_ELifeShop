@@ -1,0 +1,14 @@
+<!--pages/test/index.wxml-->
+<view class="main">
+  <view class="title"></view>
+  <view class="scroll">
+    <scroll-view scroll-y="true" bindscrolltolower="reachBottom">
+      <view class="scroll-item"></view>
+      <view class="scroll-item"></view>
+      <view class="scroll-item"></view>
+      <view class="scroll-item"></view>
+      <view class="scroll-item"></view>
+      <view class="scroll-item"></view>
+    </scroll-view>
+  </view>
+</view>

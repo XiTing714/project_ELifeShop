@@ -1,6 +1,6 @@
 const APP = getApp()
 const WXAPI = require('apifm-wxapi')
-
+import { request } from "../../utils/request"
 
 Page({
   data: {
@@ -13,6 +13,7 @@ Page({
   onLoad() {
     //console.log(this.data.navHeight, this.data.statusBarHeight, this.data.menuHeight)
     this.getBanners()
+    this.getFloorList()
   },
   async getBanners() {
     const res = await WXAPI.banners({
@@ -22,6 +23,15 @@ Page({
     this.setData({
       banners: res.data
     })
-  }
+  },
+  // 获取 楼层数据
+  getFloorList(){
+    request({ url: "/home/floordata" })
+    .then(result => {
+      this.setData({
+        floorList: result
+      })
+    })
+  },
   
 })

@@ -1,0 +1,43 @@
+<van-sticky>
+  <view class="sticky_container">
+    <view class="statusbar" style="height:{{statusBarHeight}}px"></view>
+    <view class="sticky_main" style="height:{{navHeight}}px">
+      <view class="back_btn" style="height:{{menuHeight}}px" bindtap="toBackPage">
+        <image src="../../static/images/arrow_left.png"></image>
+      </view>
+      <view class="sticky_title" style="height:{{menuHeight}}px;width:{{menuWidth*2}}px">我的地址</view>
+    </view>
+  </view>
+</van-sticky>
+
+<view class="main_container">
+  <scroll-view scroll-y>
+    <view class="address_container" wx:if="{{address}}">
+      <view class="swiper_container" wx:for="{{address}}" wx:key="id"> 
+        <van-swipe-cell right-width="{{ 70 }}">
+          <view class="swiper_main {{item.checked ? 'active_swiper_main' : ''}}">
+            <view class="swiper_main2">
+              <view class="address" bindtap="checkAddress" data-index="{{index}}"> 
+                <view class="addr_top">
+                  <view class="name">{{item.userName}}</view>
+                  <view class="tel">{{item.telNumber}}</view>
+                </view>
+                <view class="addr_bottom">
+                  <view class="blank"></view>
+                  <view class="addr">{{item.area + item.detailInfo}}</view>
+                </view>
+              </view>
+              <view class="edit" bindtap="editAddress" data-index="{{index}}">
+                <image src="../../static/images/edit.png"></image>
+              </view>
+            </view>
+          </view>
+          <view slot="right" class="delete" bindtap="delAddress" data-index="{{index}}">删除</view>
+        </van-swipe-cell>
+      </view>
+    </view>
+  </scroll-view>
+</view>
+
+<view class="add_btn" bindtap="toAddNew">新增收货地址</view>
+
