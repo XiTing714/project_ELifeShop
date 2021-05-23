@@ -6,7 +6,7 @@
 
 ### 1. 首页轮播
 
-![shouye](/home/cxt/Pictures/miniprogram/readme/shouye.png)
+![shouye](readme/shouye.png)
 
 
 
