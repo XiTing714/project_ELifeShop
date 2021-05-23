@@ -6,7 +6,7 @@
 
 ### 1. 首页轮播
 
-![shouye](readme/shouye.png)
+![shouye](https://github.com/XiTing714/mimi_program_picture/blob/master/readme/shouye.png)
 
 
 
