@@ -14,12 +14,12 @@
 
 * 商品排序
 
-![fenlei](/home/cxt/Pictures/miniprogram/readme/fenlei.png)
+![fenlei](https://github.com/XiTing714/mimi_program_picture/blob/master/readme/fenlei.png)
 
 
 * 加入购物车弹出层
 
-  ![fenlei1](/home/cxt/Pictures/miniprogram/readme/fenlei1.png)
+  ![fenlei1](https://github.com/XiTing714/mimi_program_picture/blob/master/readme/fenlei1.png)
 
 
 
@@ -27,13 +27,13 @@
 
 * 购物车商品管理
 
-  ![gouwuche1](/home/cxt/Pictures/miniprogram/readme/gouwuche1.png)
+  ![gouwuche1](https://github.com/XiTing714/mimi_program_picture/blob/master/readme/gouwuche1.png)
 
   
 
 * 选择地址弹出层
 
-  ![gouwuche2](/home/cxt/Pictures/miniprogram/readme/gouwuche2.png)
+  ![gouwuche2](https://github.com/XiTing714/mimi_program_picture/blob/master/readme/gouwuche2.png)
 
 
 
@@ -41,17 +41,17 @@
 
 * 添加地址
 
-  ![dizhiguanli](/home/cxt/Pictures/miniprogram/readme/dizhiguanli.png)
+  ![dizhiguanli](https://github.com/XiTing714/mimi_program_picture/blob/master/readme/dizhiguanli.png)
 
 
 
 * 地址列表
 
-  ![dizhiguanli1](/home/cxt/Pictures/miniprogram/readme/dizhiguanli1.png)
+  ![dizhiguanli1](https://github.com/XiTing714/mimi_program_picture/blob/master/readme/dizhiguanli1.png)
 
 
 
 ### 5. 登录检测及提示
 
-![yanzhengdenglu](/home/cxt/Pictures/miniprogram/readme/yanzhengdenglu.png)
+![yanzhengdenglu](https://github.com/XiTing714/mimi_program_picture/blob/master/readme/yanzhengdenglu.png)
 
